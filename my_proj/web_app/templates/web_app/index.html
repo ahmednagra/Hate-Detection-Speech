@@ -3,5 +3,36 @@
 {% load static %}
 
 {% block content %}
-    <h4>Main Components</h4>
+
+
+<div class="container ">
+	<div class="row">
+		<!-- Carousel -->
+    	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+		
+			<div class="carousel-inner">
+			    <div class="item active">
+			    	<img src="{% static 'web_app/images/itu.jpg' %}" alt="First slide">
+                    <!-- Static Header -->
+                    <div class="header-text hidden-xs">
+                        <div class="col-md-12 text-center">
+                            <h2>
+                            	<span>Welcome to <strong>Home Page</strong></span>
+                            </h2>
+                            <br>
+                            <h3>
+                            	<span>Hate Speech Solution</span>
+                            </h3>
+                            <br>
+                           
+                    </div><!-- /header-text -->
+			    </div>
+			   
+			<!-- Controls -->
+			<!-- /carousel -->
+	</div>
+</div>
+
+
+
 {% endblock %}

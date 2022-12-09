@@ -20,7 +20,7 @@ warnings.filterwarnings('ignore')
 stopword=set(stopwords.words('english'))
 #print(stopword)
 stemmer = nltk. SnowballStemmer("english")
-def hate_s(request, *args, **kwargs):
+def hate_speech(request, *args, **kwargs):
    
     text = request.POST.get('textA')
     print(text)
@@ -32,7 +32,7 @@ def hate_s(request, *args, **kwargs):
 
     imp_words = []
     # Storing the important words
-    for word in str(offensive_remove).split():
+    for word in str(offensive_remove):
         if word not in stopword:
             # Let's Lemmatize the word as well
             # before appending to the imp_words list.

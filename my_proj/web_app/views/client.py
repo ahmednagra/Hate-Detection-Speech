@@ -1,14 +1,16 @@
 import numpy as np
 import pandas as pd
 import os
+
 """import torch.nn as nn
 import torch
 import torch.nn.functional as F
 import transformers
 import matplotlib.pyplot as plt
-
 from torch.utils.data import TensorDataset,DataLoader
 from torch.autograd import Variable"""
+
+
 from sklearn.metrics import accuracy_score
 import nltk
 from nltk.stem import PorterStemmer
@@ -42,16 +44,15 @@ stop_words= set(stopwords.words('english'))
 nltk.download('punkt')
 print(f'all required data is downloaded')
 
-def hate_copy(request, *args, **kwargs):
+def hate(request, *args, **kwargs):
 #dataset=pd.read_csv('C:\\Users\\Sameer\\Hate-Speech-Recognition-main\\resampled_dataset.csv')
-    dataset=pd.read_csv('web_app/views/labeled_data.csv')
-    #dataset=pd.read_csv(".labeled_data.csv")
-    df =dataset.dropna(inplace = True)
+    dataset=pd.read_csv('hate-speech file/labeled_data.csv')
+    dataset.dropna(inplace = True)
+    df = dataset
+    dataset
     dataset.groupby('class')['id'].nunique().plot(kind='bar',title='Plot of number of tweets belonging to a particular class')
-    dataset(df)
-def clean_tweet(request, *args, **kwargs):
-    tweet = request.POST.get('textA')
-    print(tweet)
+    df.info()
+def clean_tweet(tweet):
     tweet = re.sub("#", "",tweet) # Removing '#' from hashtags
     tweet = re.sub("[^a-zA-Z#]", " ",tweet) # Removing punctuation and special characters
     tweet = re.sub(r'http[s]?://(?:[a-z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-f][0-9a-f]))+',"<URL>", tweet)
@@ -63,7 +64,6 @@ def clean_tweet(request, *args, **kwargs):
     for word in tweet:
         if word not in stop_words:
             return_tweet.append(word)
-    print(return_tweet)
     #return return_tweet
     dataset["tweet"]=dataset["tweet"].apply(clean_tweet)
 
@@ -74,7 +74,7 @@ def clean_tweet(request, *args, **kwargs):
 
     model = Word2Vec(dataset["tweet"].values,  window=5, min_count=1, workers=4)
 
-def get_features(tweet):
+def get_features(request, tweet):
     features=[]
     for word in tweet:
         features.append(model.wv[word])
@@ -102,7 +102,8 @@ def get_features(tweet):
     print("Recall Score: ", r)
     print("Accuracy: ", svm_clf.score(x_test,y_test))
 
-    #a = input("enter the tweet")
+    #a = input("enter the tweet")       
+    a = request.POST.get('textA')   # Here add some code from frontend form input
     a = input().split(" ")
     string =' '.join(a)
     model = Word2Vec(string,  window=5, min_count=1, workers=4)
@@ -121,6 +122,7 @@ def get_features(tweet):
         print("Hate or offensive tweet")
     elif result == 0:
         print("It is both hate and offensive tweet")
+
 
 
 

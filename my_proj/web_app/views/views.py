@@ -17,11 +17,11 @@ def train_data(request):
     
 
 def test_data(request):
-    return render(request, 'web_app/index.html')
+    return render(request, 'web_app/test.html')
 
 
 def statistics(request):
-    return render(request, 'web_app/index.html')   
+    return render(request, 'web_app/statistics.html')   
 
 
 def about(request):

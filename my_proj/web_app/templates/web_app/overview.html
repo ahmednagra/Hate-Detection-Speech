@@ -1,0 +1,71 @@
+{% extends "web_app/base.html" %}
+{% block title %} Overview {% endblock %}
+{% load static %}
+
+
+{% block content %}
+
+<form action="{% url 'det2' %}" id="mrform" id="my-from" method="post"  style="background-color: #2531d9;">
+    {% csrf_token %}
+    <div class="container my-5 py-5 text-dark">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-6">
+          <div class="card">
+            <div class="card-body p-4">
+              <div class="d-flex flex-start w-100">
+                <img class="rounded-circle shadow-1-strong me-3"
+                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(21).webp" alt="avatar" width="65"
+                  height="65" />
+                <div class="w-100">
+                  <h5>Add Your Sentence</h5>
+                  <br>
+                
+                  <div class="form-outline">
+                    <textarea class="form-control" id="textArea" name = "textA" rows="4"></textarea>
+                    <label class="form-label" for="textArea">click the Button</label>
+                  </div>
+                  <div class="d-flex justify-content-between mt-3">
+                    <button type="submit" class="btn btn-success">
+                      Predict
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                      Analysis
+                      <i class="fas fa-long-arrow-alt-right ms-1"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</form>
+<div class="bg-gradient-primary ">
+  <table class="table " style="color:primary" >
+    <thead>
+      <tr>
+        <th scope="col ">#</th>
+        <th colspan="2" >Old String</th>
+        {% for i in text %}
+        <td>{{i}}</td>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+     
+        <td colspan="2">Old String</td>
+        {% for imp in imp_words %}
+        <td>{{imp}}</td>
+        {% endfor %}
+      </tr>
+      
+    </tbody>
+  </table>
+   
+</div>
+
+
+{% endblock %}

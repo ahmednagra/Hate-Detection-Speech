@@ -1,0 +1,89 @@
+{% load static %}
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %} {% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" href="favicon.ico">
+        <link rel="stylesheet" href="{% static 'web_app/css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'web_app/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'web_app/custom.css' %}">
+
+
+        <script src="{% static 'web_app/custom.js' %}"></script>
+        <script src="{% static 'web_app/js/bootstrap.js' %}"></script>
+        <script src="{% static 'web_app/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'web_app/jquery.min.js' %}"></script>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    </head>
+
+    
+    <body id="body-pd">
+        <!--Preloader start-->
+        <div class="preloader">
+            <div class="dots dot1">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+            <!--Preloader End-->
+            <!--Sidebar start-->
+        <header class="header" id="header">
+            <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+            <div class="header_img"> <img src="{% static 'web_app/favicon.ico' %}" alt=""> </div>
+        </header>
+        <div class="l-navbar" id="nav-bar">         
+            <nav class="nav">
+                <div> <a href="{% url 'home'%}" class="nav_logo"> <img src="{% static 'web_app/favicon.ico' %}" alt=""></i> <span class="nav_logo-name">My Menu</span> </a>
+                <div class="nav_list"> 
+                    <a href="{% url 'overview'%}" class="nav_link"> 
+                        <i class='bx bx-user nav_icon'></i> 
+                        <span class="nav_name">Overview</span>
+                    </a> 
+                    
+                    <a href="{% url 'traindata'%}" class="nav_link">
+                         <i class='bx bx-message-square-detail nav_icon'></i> 
+                         <span class="nav_name">train Data</span> 
+                    </a> 
+                    <a href="{% url 'testdata'%}" class="nav_link"> 
+                        <i class='bx bx-bookmark nav_icon'></i>
+                        <span class="nav_name">Test Data</span> 
+                    </a> 
+                    <a href="{% url 'stat'%}" class="nav_link"> 
+                        <i class='bx bx-folder nav_icon'></i>
+                        <span class="nav_name">Statistics</span>
+                    </a> 
+                    <a href="{% url 'about'%}" class="nav_link"> 
+                        <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
+                        <span class="nav_name">About</span> 
+                    </a> </div>
+                </div> 
+                <a href="#" class="nav_link"> 
+                    <i class='bx bx-log-out nav_icon'></i>
+                     <span class="nav_name">SignOut</span> 
+                </a>
+            </nav>
+        </div>
+        <!--Sidebar End-->    
+
+    
+    <div  class="height-100 bg-light">
+        {% block content %}
+        {% endblock %}
+    </div>
+    
+
+    
+    <!--================== Footer Section Start ==================-->
+<footer>
+</footer>
+<!--================== Footer Section End ==================-->    
+</body>   
+</html>
